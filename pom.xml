@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.minlia.cloud</groupId>
         <artifactId>minlia-cloud-parent</artifactId>
-        <version>1.0.0.RELEASE</version>
+        <version>0.0.18.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -21,4 +21,10 @@
         <module>spring-data-batis-starter</module>
     </modules>
 
+    <scm>
+        <url>https://github.com/minlia-projects/spring-data-batis</url>
+        <connection>scm:git:git://github.com/minlia-projects/spring-data-batis.git</connection>
+        <developerConnection>scm:git:https://github.com/minlia-projects/spring-data-batis.git
+        </developerConnection>
+    </scm>
 </project>
