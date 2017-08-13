@@ -4,7 +4,7 @@
 
     <groupId>com.minlia.cloud.thirdparty</groupId>
     <artifactId>spring-data-batis-starter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0.RELEASE</version>
     <packaging>jar</packaging>
     <name>Minlia Thirdparty Spring Data Batis Starter</name>
 
@@ -50,7 +50,8 @@
         <connection>scm:git:git://github.com/minlia-projects/minlia-thirdparty.git</connection>
         <developerConnection>scm:git:https://github.com/minlia-projects/minlia-thirdparty.git
         </developerConnection>
-    </scm>
+      <tag>thirdparty-parent-1.0.0.RELEASE</tag>
+  </scm>
 
     <properties>
         <springdata.commons.version>1.13.5.RELEASE</springdata.commons.version>
