@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.minlia.cloud.thirdparty</groupId>
     <artifactId>spring-data-batis-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -17,7 +16,7 @@
     </parent>
 
 
-    <url>https://github.com/minlia-projects/spring-data-batis</url>
+    <url>https://github.com/minlia-projects/minlia-thirdparty</url>
 
     <developers>
         <developer>
@@ -47,9 +46,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/minlia-projects/spring-data-batis</url>
-        <connection>scm:git:git://github.com/minlia-projects/spring-data-batis.git</connection>
-        <developerConnection>scm:git:https://github.com/minlia-projects/spring-data-batis.git
+        <url>https://github.com/minlia-projects/minlia-thirdparty</url>
+        <connection>scm:git:git://github.com/minlia-projects/minlia-thirdparty.git</connection>
+        <developerConnection>scm:git:https://github.com/minlia-projects/minlia-thirdparty.git
         </developerConnection>
     </scm>
 

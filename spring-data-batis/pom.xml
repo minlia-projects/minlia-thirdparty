@@ -50,9 +50,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/minlia-projects/spring-data-batis</url>
-        <connection>scm:git:git://github.com/minlia-projects/spring-data-batis.git</connection>
-        <developerConnection>scm:git:https://github.com/minlia-projects/spring-data-batis.git
+        <url>https://github.com/minlia-projects/minlia-thirdparty</url>
+        <connection>scm:git:git://github.com/minlia-projects/minlia-thirdparty.git</connection>
+        <developerConnection>scm:git:https://github.com/minlia-projects/minlia-thirdparty.git
         </developerConnection>
     </scm>
 
