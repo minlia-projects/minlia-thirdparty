@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.minlia.cloud</groupId>
         <artifactId>minlia-cloud-parent</artifactId>
-        <version>0.0.18.RELEASE</version>
+        <version>1.0.0.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -22,7 +22,7 @@
         that use data access technologies. This module deals with enhanced support for MyBatis based
         data access layers.
     </description>
-    <url>https://github.com/minlia-projects/spring-data-mybatis</url>
+    <url>https://github.com/minlia-projects/spring-data-batis</url>
 
     <developers>
         <developer>
@@ -52,9 +52,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/minlia-projects/spring-data-mybatis</url>
-        <connection>scm:git:git://github.com/minlia-projects/spring-data-mybatis.git</connection>
-        <developerConnection>scm:git:https://github.com/minlia-projects/spring-data-mybatis.git
+        <url>https://github.com/minlia-projects/spring-data-batis</url>
+        <connection>scm:git:git://github.com/minlia-projects/spring-data-batis.git</connection>
+        <developerConnection>scm:git:https://github.com/minlia-projects/spring-data-batis.git
         </developerConnection>
     </scm>
 
