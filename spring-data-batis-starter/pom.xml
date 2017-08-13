@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.minlia.cloud.thirdparty</groupId>
     <artifactId>spring-data-batis-starter</artifactId>
-    <version>0.0.17-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Minlia Thirdparty Spring Data Batis Starter</name>
 
@@ -15,14 +13,10 @@
         <groupId>com.minlia.cloud</groupId>
         <artifactId>minlia-cloud-parent</artifactId>
         <version>1.0.0.RELEASE</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
-    <description>The primary goal of the Spring Data project is to make it easier to build
-        Spring-powered applications
-        that use data access technologies. This module deals with enhanced support for MyBatis based
-        data access layers.
-    </description>
+
     <url>https://github.com/minlia-projects/spring-data-batis</url>
 
     <developers>
