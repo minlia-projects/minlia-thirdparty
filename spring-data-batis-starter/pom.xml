@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.minlia.cloud.thirdparty</groupId>
-    <artifactId>spring-data-batis-starter</artifactId>
-    <version>0.0.17-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>Minlia Thirdparty Spring Data Batis Starter</name>
 
     <parent>
-        <groupId>com.minlia.cloud</groupId>
-        <artifactId>minlia-cloud-parent</artifactId>
-        <version>0.0.18.RELEASE</version>
-        <relativePath/>
+        <groupId>com.minlia.cloud.thirdparty</groupId>
+        <artifactId>minlia-thirdparty</artifactId>
+        <version>${project.version}</version>
+        <relativePath />
     </parent>
+
+    <artifactId>spring-data-batis-starter</artifactId>
+    <packaging>jar</packaging>
+    <name>Minlia Thirdparty Spring Data Batis Starter</name>
 
     <description>The primary goal of the Spring Data project is to make it easier to build
         Spring-powered applications
@@ -57,7 +52,8 @@
         <connection>scm:git:git://github.com/minlia-projects/spring-data-batis.git</connection>
         <developerConnection>scm:git:https://github.com/minlia-projects/spring-data-batis.git
         </developerConnection>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
 
     <properties>
         <springdata.commons.version>1.13.5.RELEASE</springdata.commons.version>
