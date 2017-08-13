@@ -4,7 +4,7 @@
 
     <groupId>com.minlia.cloud.thirdparty</groupId>
     <artifactId>thirdparty-parent</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Module Thirdparty Parent</name>
 
@@ -25,6 +25,6 @@
         <connection>scm:git:git://github.com/minlia-projects/minlia-thirdparty.git</connection>
         <developerConnection>scm:git:https://github.com/minlia-projects/minlia-thirdparty.git
         </developerConnection>
-      <tag>thirdparty-parent-1.0.0.RELEASE</tag>
+      <tag>HEAD</tag>
   </scm>
 </project>
