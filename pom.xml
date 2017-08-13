@@ -16,10 +16,9 @@
         <relativePath/>
     </parent>
 
-
     <modules>
-    <module>spring-data-batis</module>
-    <module>spring-data-batis-starter</module>
-
+        <module>spring-data-batis</module>
+        <module>spring-data-batis-starter</module>
     </modules>
+
 </project>
