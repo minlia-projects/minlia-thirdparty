@@ -20,11 +20,14 @@ package org.springframework.data.mybatis.mapping;
 
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
+import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 import org.springframework.data.mapping.Association;
 import org.springframework.data.mapping.PersistentEntity;
 import org.springframework.data.mapping.model.AnnotationBasedPersistentProperty;
 import org.springframework.data.mapping.model.SimpleTypeHolder;
 import org.springframework.data.util.ParsingUtils;
+import org.springframework.format.datetime.joda.DateTimeParser;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -61,6 +64,12 @@ class MybatisPersistentPropertyImpl extends AnnotationBasedPersistentProperty<My
         javaTypesMappedToJdbcTypes.put(java.sql.Date.class, DATE);
         javaTypesMappedToJdbcTypes.put(java.sql.Time.class, TIME);
         javaTypesMappedToJdbcTypes.put(java.sql.Timestamp.class, TIMESTAMP);
+        javaTypesMappedToJdbcTypes.put(DateTime.class, TIMESTAMP);
+        javaTypesMappedToJdbcTypes.put(LocalTime.class, TIME);
+        javaTypesMappedToJdbcTypes.put(java.time.LocalTime.class, TIME);
+        javaTypesMappedToJdbcTypes.put(java.time.ZonedDateTime.class, TIME);
+        javaTypesMappedToJdbcTypes.put(java.time.LocalDate.class, DATE);
+        javaTypesMappedToJdbcTypes.put(java.time.LocalDateTime.class, TIME);
 
         javaTypesMappedToJdbcTypes.put(Boolean.class, BIT);
         javaTypesMappedToJdbcTypes.put(Integer.class, INTEGER);

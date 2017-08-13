@@ -14,14 +14,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.minlia.cloud.thirdparty</groupId>
     <artifactId>spring-data-batis</artifactId>
-    <version>0.0.17-SNAPSHOT</version>
+    <version>1.0.0.RELEASE</version>
     <packaging>jar</packaging>
     <name>Minlia Thirdparty Spring Data Batis</name>
 
     <parent>
         <groupId>com.minlia.cloud</groupId>
         <artifactId>minlia-cloud-parent</artifactId>
-        <version>0.0.18.RELEASE</version>
+        <version>1.0.0.RELEASE</version>
         <relativePath/>
     </parent>
 
