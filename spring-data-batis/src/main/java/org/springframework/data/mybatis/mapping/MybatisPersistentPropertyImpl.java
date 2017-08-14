@@ -234,7 +234,16 @@ class MybatisPersistentPropertyImpl extends AnnotationBasedPersistentProperty<My
             return column.name();
         }
 
-        return ParsingUtils.reconcatenateCamelCase(getName(), "_");
+        String field="";
+        if(!StringUtils.isEmpty(getName())){
+            field=getName();
+        }
+        if(!StringUtils.isEmpty(getField())){
+            field=getField().getName();
+        }
+
+        field=name;
+        return ParsingUtils.reconcatenateCamelCase(field, "_");
     }
 
 
