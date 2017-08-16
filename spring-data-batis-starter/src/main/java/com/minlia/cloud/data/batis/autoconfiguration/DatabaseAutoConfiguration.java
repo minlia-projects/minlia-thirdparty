@@ -1,35 +1,22 @@
 package com.minlia.cloud.data.batis.autoconfiguration;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.data.mybatis.domains.AuditDateAware;
 import org.springframework.data.mybatis.replication.transaction.ReadWriteManagedTransactionFactory;
 import org.springframework.data.mybatis.repository.config.EnableMybatisRepositories;
-import org.springframework.data.mybatis.repository.dialect.Dialect;
-import org.springframework.data.mybatis.repository.dialect.MySQLDialect;
-import org.springframework.data.mybatis.support.HierarchicalResourceLoader;
-import org.springframework.data.mybatis.support.HierarchicalSqlSessionFactoryBean;
 import org.springframework.data.mybatis.support.SqlSessionFactoryBean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Configuration
