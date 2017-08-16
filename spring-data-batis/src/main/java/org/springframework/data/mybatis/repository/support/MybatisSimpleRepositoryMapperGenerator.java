@@ -121,6 +121,9 @@ public class MybatisSimpleRepositoryMapperGenerator {
         if (!isFragmentExist("TABLE_NAME")) {
             builder.append("<sql id=\"TABLE_NAME\">" + dialect.wrapTableName(persistentEntity.getTableName()) + "</sql>");
         }
+        if (!isFragmentExist("LIMIT")) {
+            builder.append("<sql id=\"LIMIT\">limit #{pageSize} offset #{offset}</sql>");
+        }
         if (dialect.supportsSequences()) {
             if (!isFragmentExist("SEQUENCE")) {
                 builder.append("<sql id=\"SEQUENCE\">" + dialect.getSequenceNextValString(persistentEntity.getSequenceName()) + "</sql>");
