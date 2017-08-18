@@ -43,7 +43,7 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
     private static final String STATEMENT_INSERT = "_insert";
     private static final String STATEMENT_UPDATE = "_update";
     private static final String STATEMENT_UPDATE_IGNORE_NULL = "_updateIgnoreNull";
-    private static final String STATEMENT_GET_BY_ID = "_getById";
+    private static final String _STATEMENT_FIND_BY_ID = "_findById";
     private static final String STATEMENT_DELETE_BY_ID = "_deleteById";
 
     private final MybatisEntityInformation<T, ID> entityInformation;
@@ -117,7 +117,7 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
     @Override
     @Transactional
     public <S extends T> S save(S entity) {
-        Assert.notNull(entity, "entity can not be null");
+        Assert.notNull(entity, "Entity could not be null");
         if (entityInformation.isNew(entity)) {
             // insert
             insert(entity);
@@ -131,7 +131,7 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
     @Override
     @Transactional
     public <S extends T> S saveIgnoreNull(S entity) {
-        Assert.notNull(entity, "entity can not be null");
+        Assert.notNull(entity, "Entity could not be null");
 
         if (entityInformation.isNew(entity)) {
             // insert
@@ -145,8 +145,8 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
 
     @Override
     public T findOne(ID id) {
-        Assert.notNull(id, "id can not be null");
-        return selectOne(STATEMENT_GET_BY_ID, id);
+        Assert.notNull(id, "id could not be null");
+        return selectOne(_STATEMENT_FIND_BY_ID, id);
     }
 
     @Override
