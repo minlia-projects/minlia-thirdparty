@@ -120,30 +120,30 @@ public abstract class SqlSessionRepositorySupport {
     /**
      * Calculate total mount.
      *
-     * @param pager
+     * @param pageable
      * @param result
      * @return if return -1 means can not judge ,need count from database.
      */
-    protected <X> long calculateTotal(Pageable pager, List<X> result) {
-        if (pager.hasPrevious()) {
+    protected <X> long calculateTotal(Pageable pageable, List<X> result) {
+        if (pageable.hasPrevious()) {
             if (CollectionUtils.isEmpty(result)) return -1;
-            if (result.size() == pager.getPageSize()) return -1;
-            return (pager.getPageNumber() - 1) * pager.getPageSize() + result.size();
+            if (result.size() == pageable.getPageSize()) return -1;
+            return (pageable.getPageNumber() - 1) * pageable.getPageSize() + result.size();
         }
-        if (result.size() < pager.getPageSize()) return result.size();
+        if (result.size() < pageable.getPageSize()) return result.size();
         return -1;
     }
 
-    protected <X, Y, T extends Page<X>> T findByPager(Class<T> resultType, Pageable pager, String selectStatement, String countStatement, Y condition, Map<String, Object> otherParams) {
+    protected <X, Y, T extends Page<X>> T findByPageable(Class<T> resultType, Pageable pageable, String selectStatement, String countStatement, Y condition, Map<String, Object> otherParams) {
         Map<String, Object> params = new HashMap<String, Object>();
-        // params.put("pager", pager);
-        params.put("offset", pager.getOffset());
-        params.put("pageSize", pager.getPageSize());
-        params.put("offsetEnd", pager.getOffset() + pager.getPageSize());
+        // params.put("pageable", pageable);
+        params.put("offset", pageable.getOffset());
+        params.put("pageSize", pageable.getPageSize());
+        params.put("offsetEnd", pageable.getOffset() + pageable.getPageSize());
         if (condition instanceof Sort) {
             params.put("_sorts", condition);
         } else {
-            params.put("_sorts", pager.getSort());
+            params.put("_sorts", pageable.getSort());
         }
         params.put("_condition", condition);
 
@@ -153,32 +153,32 @@ public abstract class SqlSessionRepositorySupport {
         List<X> result = selectList(selectStatement, params);
 
 
-        long total = calculateTotal(pager, result);
+        long total = calculateTotal(pageable, result);
         if (total < 0) {
             total = selectOne(countStatement, params);
         }
 
         try {
             Constructor<T> constructor = resultType.getConstructor(List.class, Pageable.class, long.class);
-            return constructor.newInstance(result, pager, total);
+            return constructor.newInstance(result, pageable, total);
         } catch (Exception e) {
             throw new MybatisQueryException(e);
         }
     }
 
-    protected <X, Y> Page<X> findByPager(Pageable pager, String selectStatement, String countStatement, Y condition, Map<String, Object> otherParams) {
-        return findByPager(pager, selectStatement, countStatement, condition, otherParams, new String[0]);
+    protected <X, Y> Page<X> findByPageable(Pageable pageable, String selectStatement, String countStatement, Y condition, Map<String, Object> otherParams) {
+        return findByPageable(pageable, selectStatement, countStatement, condition, otherParams, new String[0]);
     }
 
-    protected <X, Y> Page<X> findByPager(Pageable pager, String selectStatement, String countStatement, Y condition, Map<String, Object> otherParams, String... columns) {
+    protected <X, Y> Page<X> findByPageable(Pageable pageable, String selectStatement, String countStatement, Y condition, Map<String, Object> otherParams, String... columns) {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("offset", pager.getOffset());
-        params.put("pageSize", pager.getPageSize());
-        params.put("offsetEnd", pager.getOffset() + pager.getPageSize());
+        params.put("offset", pageable.getOffset());
+        params.put("pageSize", pageable.getPageSize());
+        params.put("offsetEnd", pageable.getOffset() + pageable.getPageSize());
         if (condition instanceof Sort) {
             params.put("_sorts", condition);
         } else {
-            params.put("_sorts", pager.getSort());
+            params.put("_sorts", pageable.getSort());
         }
         params.put("_condition", condition);
         if (null != columns) {
@@ -189,24 +189,24 @@ public abstract class SqlSessionRepositorySupport {
         }
         List<X> result = selectList(selectStatement, params);
 
-        long total = calculateTotal(pager, result);
+        long total = calculateTotal(pageable, result);
         if (total < 0) {
             total = selectOne(countStatement, params);
         }
 
-        return new PageImpl<X>(result, pager, total);
+        return new PageImpl<X>(result, pageable, total);
     }
 
-    protected <X> Page<X> findByPager(Pageable pager, String selectStatement, String countStatement) {
-        return this.findByPager(pager, selectStatement, countStatement, null);
+    protected <X> Page<X> findByPageable(Pageable pageable, String selectStatement, String countStatement) {
+        return this.findByPageable(pageable, selectStatement, countStatement, null);
     }
 
-    protected <X, Y> Page<X> findByPager(Pageable pager, String selectStatement, String countStatement, Y condition) {
-        return this.findByPager(pager, selectStatement, countStatement, condition, (Map<String, Object>) null);
+    protected <X, Y> Page<X> findByPageable(Pageable pageable, String selectStatement, String countStatement, Y condition) {
+        return this.findByPageable(pageable, selectStatement, countStatement, condition, (Map<String, Object>) null);
     }
 
-    protected <X, Y> Page<X> findByPager(Pageable pager, String selectStatement, String countStatement, Y condition, String... columns) {
-        return this.findByPager(pager, selectStatement, countStatement, condition, null, columns);
+    protected <X, Y> Page<X> findByPageable(Pageable pageable, String selectStatement, String countStatement, Y condition, String... columns) {
+        return this.findByPageable(pageable, selectStatement, countStatement, condition, null, columns);
     }
 
 }

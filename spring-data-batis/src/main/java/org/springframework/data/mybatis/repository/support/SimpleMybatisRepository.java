@@ -88,9 +88,9 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
 //        TODO fix preUpdate
 //        entityInformation.preUpdate(entity);
         int row = update(STATEMENT_UPDATE, entity);
-        if (row == 0) {
-            throw new MybatisNoHintException("update effect 0 row, maybe version control lock occurred.");
-        }
+//        if (row == 0) {
+//            throw new MybatisNoHintException("update effect 0 row, maybe version control lock occurred.");
+//        }
         if (entityInformation.hasVersion()) {
             entityInformation.increaseVersion(entity);
         }
@@ -105,9 +105,9 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
         //TODO fix preUpdate
 //        entityInformation.preUpdate(entity);
         int row = update(STATEMENT_UPDATE_IGNORE_NULL, entity);
-        if (row == 0) {
-            throw new MybatisNoHintException("update effect 0 row, maybe version control lock occurred.");
-        }
+//        if (row == 0) {
+//            throw new MybatisNoHintException("update effect 0 row, maybe version control lock occurred.");
+//        }
         if (entityInformation.hasVersion()) {
             entityInformation.increaseVersion(entity);
         }
@@ -306,7 +306,7 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
         if (null != columns) {
             otherParam.put("_specifiedFields", columns);
         }
-        return findByPager(pageable, "_findByPager", "_countByCondition", condition, otherParam);
+        return findByPageable(pageable, "_findByPageable", "_countByCondition", condition, otherParam);
     }
 
     @Override
@@ -349,14 +349,14 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
 
     @Override
     public Page<T> findAll(boolean isBasic, Pageable pageable, Map<String, Object> paramsMap, String... columns) {
-        return findByPager(pageable, isBasic ? "_findBasicByPager" : "_findByPager",
+        return findByPageable(pageable, isBasic ? "_findBasicByPageable" : "_findByPageable",
                 isBasic ? "_countBasicByCondition" : "_countByCondition", null, paramsMap, columns);
 
     }
 
     @Override
     public Page<T> findAll(String selectStatement, String countStatement, Pageable pageable, Map<String, Object> paramsMap, String... columns) {
-        return findByPager(pageable, selectStatement, countStatement, null, paramsMap, columns);
+        return findByPageable(pageable, selectStatement, countStatement, null, paramsMap, columns);
 
     }
 
@@ -401,7 +401,7 @@ public class SimpleMybatisRepository<T, ID extends Serializable> extends SqlSess
 
     @Override
     public <X extends T> Page<T> findBasicAll(Pageable pageable, X condition, String... columns) {
-        return findByPager(pageable, "_findBasicByPager", "_countBasicByCondition", condition, columns);
+        return findByPageable(pageable, "_findBasicByPageable", "_countBasicByCondition", condition, columns);
     }
 
     @Override

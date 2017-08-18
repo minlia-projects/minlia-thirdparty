@@ -162,11 +162,11 @@ public class MybatisSimpleRepositoryMapperGenerator {
         if (!isStatementExist("_deleteAll")) {
             buildDeleteAll(builder);
         }
-        if (!isStatementExist("_findByPager")) {
-            buildFindByPager(builder);
+        if (!isStatementExist("_findByPageable")) {
+            buildFindByPageable(builder);
         }
-        if (!isStatementExist("_findBasicByPager")) {
-            buildFindBasicByPager(builder);
+        if (!isStatementExist("_findBasicByPageable")) {
+            buildFindBasicByPageable(builder);
         }
         if (!isStatementExist("_countByCondition")) {
             buildCountByCondition(builder);
@@ -353,9 +353,9 @@ public class MybatisSimpleRepositoryMapperGenerator {
         builder.append("</select>");
     }
 
-    private void buildFindBasicByPager(StringBuilder builder) {
+    private void buildFindBasicByPageable(StringBuilder builder) {
 
-        builder.append("<select id=\"_findBasicByPager\" resultMap=\"ResultMap\" lang=\"XML\">");
+        builder.append("<select id=\"_findBasicByPageable\" resultMap=\"ResultMap\" lang=\"XML\">");
         StringBuilder condition = new StringBuilder();
         condition.append("<if test=\"_condition != null\">");
         condition.append("<trim prefix=\" where \" prefixOverrides=\"and |or \">");
@@ -370,8 +370,8 @@ public class MybatisSimpleRepositoryMapperGenerator {
     }
 
 
-    private void buildFindByPager(StringBuilder builder) {
-        builder.append("<select id=\"_findByPager\" resultMap=\"ResultMap\" lang=\"XML\">");
+    private void buildFindByPageable(StringBuilder builder) {
+        builder.append("<select id=\"_findByPageable\" resultMap=\"ResultMap\" lang=\"XML\">");
         StringBuilder condition = new StringBuilder();
         condition.append("<if test=\"_condition != null\">");
         condition.append("<trim prefix=\" where \" prefixOverrides=\"and |or \">");
