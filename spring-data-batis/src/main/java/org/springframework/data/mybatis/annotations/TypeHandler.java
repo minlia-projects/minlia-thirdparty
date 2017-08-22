@@ -18,11 +18,13 @@
 
 package org.springframework.data.mybatis.annotations;
 
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.*;
 
 /**
  * @author Jarvis Song
@@ -31,6 +33,6 @@ import static java.lang.annotation.ElementType.*;
 @Target(value = {FIELD, METHOD, ANNOTATION_TYPE})
 public @interface TypeHandler {
 
-    Class<? extends org.apache.ibatis.type.TypeHandler> value();
+  Class<? extends org.apache.ibatis.type.TypeHandler> value();
 
 }
