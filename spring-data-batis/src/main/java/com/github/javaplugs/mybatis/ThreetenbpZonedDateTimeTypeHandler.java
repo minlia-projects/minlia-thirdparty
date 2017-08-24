@@ -27,12 +27,14 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
+import org.jadira.usertype.dateandtime.threetenbp.columnmapper.TimestampColumnZonedDateTimeMapper;
 import org.threeten.bp.DateTimeUtils;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
@@ -45,10 +47,12 @@ public class ThreetenbpZonedDateTimeTypeHandler extends BaseTypeHandler<ZonedDat
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, ZonedDateTime parameter, JdbcType jdbcType) throws SQLException {
+        GregorianCalendar gregorianCalendar=DateTimeUtils.toGregorianCalendar(parameter);
+        Timestamp timestamp=DateTimeUtils.toSqlTimestamp(parameter.toLocalDateTime());
         ps.setTimestamp(
             i,
-            DateTimeUtils.toSqlTimestamp(parameter.toInstant()),
-            DateTimeUtils.toGregorianCalendar(parameter)
+            timestamp,
+            gregorianCalendar
         );
     }
 
@@ -56,10 +60,8 @@ public class ThreetenbpZonedDateTimeTypeHandler extends BaseTypeHandler<ZonedDat
     public ZonedDateTime getNullableResult(ResultSet rs, String columnName) throws SQLException {
         Timestamp ts = rs.getTimestamp(columnName, Calendar.getInstance());
         if (ts != null) {
-//            return DateTimeUtils.toSqlTimestamp(ts.toInstant());
-//            return ZonedDateTime.ofInstant(ts.toInstant(), ZoneId.systemDefault());
-//            return DateTimeUtils.toZonedDateTime(DateTimeUtils.toInstant(ts));
-            return ZonedDateTime.from(DateTimeUtils.toLocalDateTime(ts));
+            TimestampColumnZonedDateTimeMapper timestampColumnZonedDateTimeMapper=new TimestampColumnZonedDateTimeMapper();
+            return timestampColumnZonedDateTimeMapper.fromNonNullValue(ts);
         }
         return null;
     }
@@ -68,8 +70,8 @@ public class ThreetenbpZonedDateTimeTypeHandler extends BaseTypeHandler<ZonedDat
     public ZonedDateTime getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         Timestamp ts = rs.getTimestamp(columnIndex, Calendar.getInstance());
         if (ts != null) {
-//            return ZonedDateTime.ofInstant(ts.toInstant(), ZoneId.systemDefault());
-            return ZonedDateTime.from(DateTimeUtils.toLocalDateTime(ts));
+            TimestampColumnZonedDateTimeMapper timestampColumnZonedDateTimeMapper=new TimestampColumnZonedDateTimeMapper();
+            return timestampColumnZonedDateTimeMapper.fromNonNullValue(ts);
         }
         return null;
     }
@@ -78,8 +80,8 @@ public class ThreetenbpZonedDateTimeTypeHandler extends BaseTypeHandler<ZonedDat
     public ZonedDateTime getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         Timestamp ts = cs.getTimestamp(columnIndex, Calendar.getInstance());
         if (ts != null) {
-//            return ZonedDateTime.ofInstant(ts.toInstant(), ZoneId.systemDefault());
-            return ZonedDateTime.from(DateTimeUtils.toLocalDateTime(ts));
+            TimestampColumnZonedDateTimeMapper timestampColumnZonedDateTimeMapper=new TimestampColumnZonedDateTimeMapper();
+            return timestampColumnZonedDateTimeMapper.fromNonNullValue(ts);
         }
         return null;
     }
