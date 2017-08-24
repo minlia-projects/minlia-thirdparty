@@ -20,8 +20,6 @@ package org.springframework.data.mybatis.mapping;
 
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
-import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
 import org.springframework.data.mapping.Association;
 import org.springframework.data.mapping.PersistentEntity;
 import org.springframework.data.mapping.model.AnnotationBasedPersistentProperty;
@@ -35,6 +33,10 @@ import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.OffsetTime;
+import org.threeten.bp.ZonedDateTime;
 
 import static org.apache.ibatis.type.JdbcType.*;
 
@@ -64,8 +66,16 @@ class MybatisPersistentPropertyImpl extends AnnotationBasedPersistentProperty<My
         javaTypesMappedToJdbcTypes.put(java.sql.Date.class, DATE);
         javaTypesMappedToJdbcTypes.put(java.sql.Time.class, TIME);
         javaTypesMappedToJdbcTypes.put(java.sql.Timestamp.class, TIMESTAMP);
-        javaTypesMappedToJdbcTypes.put(DateTime.class, TIMESTAMP);
-        javaTypesMappedToJdbcTypes.put(LocalTime.class, TIME);
+        javaTypesMappedToJdbcTypes.put(org.joda.time.DateTime.class, TIMESTAMP);
+        javaTypesMappedToJdbcTypes.put(org.joda.time.LocalTime.class, TIME);
+
+        //threetenbp
+        javaTypesMappedToJdbcTypes.put(ZonedDateTime.class, TIMESTAMP);
+        javaTypesMappedToJdbcTypes.put(LocalDateTime.class, TIMESTAMP);
+        javaTypesMappedToJdbcTypes.put(OffsetDateTime.class, TIMESTAMP);
+        javaTypesMappedToJdbcTypes.put(OffsetTime.class, TIMESTAMP);
+
+
         javaTypesMappedToJdbcTypes.put(java.time.LocalTime.class, TIME);
         javaTypesMappedToJdbcTypes.put(java.time.ZonedDateTime.class, TIME);
         javaTypesMappedToJdbcTypes.put(java.time.LocalDate.class, DATE);
@@ -202,8 +212,8 @@ class MybatisPersistentPropertyImpl extends AnnotationBasedPersistentProperty<My
         JdbcType t = javaTypesMappedToJdbcTypes.get(type);
         if (null != t) {
             return t;
-        } else {
-            System.out.println("FUCK");
+//        } else {
+//            System.out.println("Type without handler "+type);
         }
 
         return UNDEFINED;

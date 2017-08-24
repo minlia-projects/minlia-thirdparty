@@ -20,6 +20,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Date;
+import org.threeten.bp.ZonedDateTime;
 
 
 @Configuration
@@ -62,11 +63,11 @@ public class DatabaseAutoConfiguration implements ResourceLoaderAware {
 
     @Bean
     @ConditionalOnMissingBean
-    public AuditDateAware<Date> auditDateAware() {
-        return new AuditDateAware<Date>() {
+    public AuditDateAware<ZonedDateTime> auditDateAware() {
+        return new AuditDateAware<ZonedDateTime>() {
             @Override
-            public Date getCurrentDate() {
-                return new Date();
+            public ZonedDateTime getCurrentDate() {
+                return ZonedDateTime.now();
             }
         };
     }
