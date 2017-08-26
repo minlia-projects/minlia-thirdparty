@@ -1,0 +1,13 @@
+<xml>
+  <appId>wx62eb98733173fa88</appId>
+  <mchId>1402784402</mchId>
+  <mchKey>guangdongyinxingkeji075781857116</mchKey>
+  <!---
+  以下为官网文档所提供样例参数，仅供部分接口测试使用
+  <appId>wxd930ea5d5a258f4f</appId>
+  <mchId>10000100</mchId>
+  <mchKey>192006250b4c09247ec02edce69f6a2d</mchKey>
+  -->
+  <keyPath>classpath:/apiclient_cert.p12</keyPath>
+  <openid>oGM7bwGdkotqW25z8Bwm05hrXDZY</openid>
+</xml>
