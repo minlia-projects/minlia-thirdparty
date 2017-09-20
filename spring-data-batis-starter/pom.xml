@@ -54,7 +54,6 @@
   </scm>
 
     <properties>
-        <springdata.commons.version>1.13.5.RELEASE</springdata.commons.version>
         <mybatis.version>3.4.5</mybatis.version>
     </properties>
 
