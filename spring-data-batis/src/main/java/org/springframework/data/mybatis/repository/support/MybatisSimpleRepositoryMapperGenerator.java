@@ -144,7 +144,7 @@ public class MybatisSimpleRepositoryMapperGenerator {
         if (!isStatementExist("_updateIgnoreNull")) {
             buildUpdateSQL(builder, "_updateIgnoreNull", true);
         }
-        if (!isStatementExist("_getById")) {
+        if (!isStatementExist("_findById")) {
             buildGetById(builder);
         }
         if (!isStatementExist("_findAll")) {
@@ -174,7 +174,7 @@ public class MybatisSimpleRepositoryMapperGenerator {
         if (!isStatementExist("_countBasicByCondition")) {
             buildCountBasicByCondition(builder);
         }
-        if (!isStatementExist("_getBasicById")) {
+        if (!isStatementExist("_findBasicById")) {
             buildGetBasicById(builder);
         }
         if (!isStatementExist("_deleteByCondition")) {
@@ -313,7 +313,7 @@ public class MybatisSimpleRepositoryMapperGenerator {
     }
 
     private void buildGetById(final StringBuilder builder) {
-        builder.append("<select id=\"_getById\" parameterType=\"" + domainClass.getName() + "\" resultMap=\"ResultMap\" lang=\"XML\">");
+        builder.append("<select id=\"_findById\" parameterType=\"" + domainClass.getName() + "\" resultMap=\"ResultMap\" lang=\"XML\">");
         builder.append("select ").append(generator.buildSelectColumns(false)).append(" from ").append(generator.buildFrom(false));
 
         builder.append("<trim prefix=\" where \" prefixOverrides=\"and |or \">");
@@ -345,7 +345,7 @@ public class MybatisSimpleRepositoryMapperGenerator {
     private void buildGetBasicById(final StringBuilder builder) {
 
 
-        builder.append("<select id=\"_getBasicById\" parameterType=\"" + domainClass.getName() + "\" resultMap=\"ResultMap\" lang=\"XML\">");
+        builder.append("<select id=\"_findBasicById\" parameterType=\"" + domainClass.getName() + "\" resultMap=\"ResultMap\" lang=\"XML\">");
         builder.append("select ").append(generator.buildSelectColumns(true)).append(" from ").append(generator.buildFrom(true));
         builder.append("<trim prefix=\" where \" prefixOverrides=\"and |or \">");
         buildByIdCaluse(builder);

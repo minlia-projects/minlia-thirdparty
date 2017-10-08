@@ -1,7 +1,11 @@
 package com.minlia.cloud.data.batis.autoconfiguration;
 
 import java.time.LocalDateTime;
+import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.plugin.Interceptor;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,8 +20,6 @@ import org.springframework.data.mybatis.support.SqlSessionFactoryBean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import javax.sql.DataSource;
-
 
 @Configuration
 @EnableConfigurationProperties(MybatisProperties.class)
@@ -30,11 +32,17 @@ public class DatabaseAutoConfiguration implements ResourceLoaderAware {
     private ResourceLoader resourceLoader;
 
 
+    @Autowired
+    private ObjectProvider<Interceptor[]> interceptorsProvider;
+
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setVfs(SpringBootVFS.class);
         factoryBean.setDataSource(dataSource);
+        if(interceptorsProvider.getIfAvailable().length>0){
+            factoryBean.setPlugins(interceptorsProvider.getIfAvailable());
+        }
         ReadWriteManagedTransactionFactory factory = new ReadWriteManagedTransactionFactory();
         factoryBean.setTransactionFactory(factory);
 
