@@ -22,6 +22,7 @@ import org.springframework.data.mapping.*;
 import org.springframework.data.mapping.model.BasicPersistentEntity;
 import org.springframework.data.util.ParsingUtils;
 import org.springframework.data.util.TypeInformation;
+import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
@@ -117,7 +118,40 @@ public class MybatisPersistentEntityImpl<T> extends BasicPersistentEntity<T, Myb
         return ParsingUtils.reconcatenateCamelCase(getType().getSimpleName(), "_");
     }
 
+    /**
+     * Overrides to bypass the duplicated properties
+     * @param handler
+     */
+    @Override
+    public void doWithProperties(SimplePropertyHandler handler) {
 
+        Assert.notNull(handler, "Handler must not be null!");
+
+        List<MybatisPersistentProperty> pps=new ArrayList<MybatisPersistentProperty>();
+
+        super.doWithProperties(new SimplePropertyHandler() {
+            @Override
+            public void doWithPersistentProperty(PersistentProperty<?> pp) {
+                MybatisPersistentProperty property = (MybatisPersistentProperty) pp;
+                Boolean found=Boolean.FALSE;
+                for(MybatisPersistentProperty p:pps){
+                    if(p.getName()==property.getName()){
+                        found=Boolean.TRUE;
+                    }
+                }
+                if(found==Boolean.FALSE){
+                    pps.add(property);
+                }
+            }
+        });
+
+        for (PersistentProperty<?> property : pps) {
+            if (!property.isTransient() && !property.isAssociation()) {
+                handler.doWithPersistentProperty(property);
+            }
+        }
+
+    }
 
 
 
