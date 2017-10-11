@@ -40,7 +40,7 @@ public class DatabaseAutoConfiguration implements ResourceLoaderAware {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setVfs(SpringBootVFS.class);
         factoryBean.setDataSource(dataSource);
-        if(interceptorsProvider.getIfAvailable().length>0){
+        if(null!=interceptorsProvider && null != interceptorsProvider.getIfAvailable() && interceptorsProvider.getIfAvailable().length>0){
             factoryBean.setPlugins(interceptorsProvider.getIfAvailable());
         }
         ReadWriteManagedTransactionFactory factory = new ReadWriteManagedTransactionFactory();
