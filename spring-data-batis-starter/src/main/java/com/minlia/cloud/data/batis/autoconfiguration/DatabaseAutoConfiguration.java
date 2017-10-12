@@ -22,7 +22,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableConfigurationProperties(MybatisProperties.class)
 
 @EntityScan(basePackages = {".**.domain", ".**.model"})
-@EnableMybatisRepositories(value = {".**.dao"}, mapperLocations = {"classpath*:**/dao/*Dao.xml", "classpath*:**/dao/*DaoCustom.xml"})//, transactionManagerRef = "batisTransactionManager"
+@EnableMybatisRepositories(value = {".**.dao"}, mapperLocations = {"classpath*:**/dao/*Dao.xml", "classpath*:**/dao/*DaoCustom.xml"}, transactionManagerRef = "batisTransactionManager")
 @Slf4j
 public class DatabaseAutoConfiguration implements ResourceLoaderAware {
 
@@ -49,7 +49,7 @@ public class DatabaseAutoConfiguration implements ResourceLoaderAware {
 
 
     @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+    public PlatformTransactionManager batisTransactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
