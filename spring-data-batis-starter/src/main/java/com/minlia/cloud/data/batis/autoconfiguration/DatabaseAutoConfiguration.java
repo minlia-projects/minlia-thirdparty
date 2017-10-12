@@ -3,9 +3,7 @@ package com.minlia.cloud.data.batis.autoconfiguration;
 import java.time.LocalDateTime;
 import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.plugin.Interceptor;
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mybatis.spring.transaction.SpringManagedTransactionFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -14,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.mybatis.domains.AuditDateAware;
-import org.springframework.data.mybatis.replication.transaction.ReadWriteManagedTransactionFactory;
 import org.springframework.data.mybatis.repository.config.EnableMybatisRepositories;
 import org.springframework.data.mybatis.support.SqlSessionFactoryBean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -25,7 +22,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableConfigurationProperties(MybatisProperties.class)
 
 @EntityScan(basePackages = {".**.domain", ".**.model"})
-@EnableMybatisRepositories(value = {".**.dao"}, mapperLocations = {"classpath*:**/dao/*Dao.xml", "classpath*:**/dao/*DaoCustom.xml"}, transactionManagerRef = "batisTransactionManager")
+@EnableMybatisRepositories(value = {".**.dao"}, mapperLocations = {"classpath*:**/dao/*Dao.xml", "classpath*:**/dao/*DaoCustom.xml"})//, transactionManagerRef = "batisTransactionManager"
 @Slf4j
 public class DatabaseAutoConfiguration implements ResourceLoaderAware {
 
@@ -43,7 +40,8 @@ public class DatabaseAutoConfiguration implements ResourceLoaderAware {
 //        if(null!=interceptorsProvider && null != interceptorsProvider.getIfAvailable() && interceptorsProvider.getIfAvailable().length>0){
 //            factoryBean.setPlugins(interceptorsProvider.getIfAvailable());
 //        }
-        ReadWriteManagedTransactionFactory factory = new ReadWriteManagedTransactionFactory();
+//        ReplicationRoutingDataSource factory = new ReplicationRoutingDataSource();
+        SpringManagedTransactionFactory factory = new SpringManagedTransactionFactory();
         factoryBean.setTransactionFactory(factory);
 
         return factoryBean;
@@ -51,7 +49,7 @@ public class DatabaseAutoConfiguration implements ResourceLoaderAware {
 
 
     @Bean
-    public PlatformTransactionManager batisTransactionManager(DataSource dataSource) {
+    public PlatformTransactionManager transactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
